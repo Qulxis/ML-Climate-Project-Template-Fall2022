@@ -15,5 +15,6 @@ Observations:
 "Global horizontal irradiance (GHI) is a measurement of the total solar electromagnetic radiation above a horizontal surface at a given location and time. It is the most useful metric for predicting solar panel output. It accounts for 71.6% of PV performance variations. "
 - Temperature and GHI are both localized and arranged accordingly. This dataset is very promising, will proceed to research API usage to extract data for other data locations.
 - Time series prediction on single location could be viable: RNN model using historical prediction, transformer arch/LSTM model also would be good approaches. 
+- File format is csv, 1 measurement per hour per day, around 8000+ data points per year
 
 Conclusion: nsrdb is much more optimal than the original datasets. It's model for GHI is based on predicitions using the initially listed datasets (MERRA 2, MODIS, NASA database sets) and localizes the measurements of temperature and GHI, the main factors of our prediction. From here, I will move forward with data extraction via API, and then move towards creating a predictive model using location information (various attributes are open on nsrdb website, such as wind, dew point, etc). The key will actually be looking for correlation between other attributes to predict temperature and GHI outside of the autoregressive time model information.
