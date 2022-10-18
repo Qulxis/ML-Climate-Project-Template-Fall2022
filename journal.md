@@ -33,4 +33,6 @@ TODO:
 
 API python example: https://developer.nrel.gov/docs/solar/nsrdb/guide/
 
+Conclusions: datapoint example loaded successfully as a usable pandas df. I will next look into baseline predictions using basic regression models for both temperature and GHI using time. I will also look into defining a metric to mark good locations vs bad locations.
+
 
