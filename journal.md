@@ -18,3 +18,19 @@ Observations:
 - File format is csv, 1 measurement per hour per day, around 8000+ data points per year
 
 Conclusion: nsrdb is much more optimal than the original datasets. It's model for GHI is based on predicitions using the initially listed datasets (MERRA 2, MODIS, NASA database sets) and localizes the measurements of temperature and GHI, the main factors of our prediction. From here, I will move forward with data extraction via API, and then move towards creating a predictive model using location information (various attributes are open on nsrdb website, such as wind, dew point, etc). The key will actually be looking for correlation between other attributes to predict temperature and GHI outside of the autoregressive time model information.
+
+## 10/18/2022
+Missed progress last week as was sick for its entirety.
+
+Current work: Get data via API. Not a lot of documentation available, so experimention is needed. However, I should be able to do some basic experimentation on the current set of data. 
+TODO:
+[] Gather data using API as current extraction through GUI limits to only one location at a time due to download size limits.
+[] Define a usibility metric. Cold is good, but sunlight is likely more important. The weighting of these needs to be considered. 
+[] Filtering data down and cleaning. Option 1: GHI should be looked at as a summation over time, while temperature should be viewed as a condition that needs to be met a minimum of x hours a day. Option 2: combine GHI and temperature for each hour to get a score. The best way to combine this is a research task
+[] Research the way energy generation depends on temperature and GHI to determine exactly how much each should be considered.
+[] Consider regression for predictions overtime (predict usability score)
+[] Consider classification for location choice (more like manual, but also related). Will require multiple location analysis.
+
+API python example: https://developer.nrel.gov/docs/solar/nsrdb/guide/
+
+
