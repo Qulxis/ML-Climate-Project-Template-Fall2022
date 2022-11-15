@@ -77,6 +77,7 @@ Issues:
 NSRDB Notebook for reference found:
 https://github.com/NREL/hsds-examples/blob/master/notebooks/03_NSRDB_introduction.ipynb
 https://developer.nrel.gov/docs/solar/nsrdb/python-examples/
+https://sam.nrel.gov/
 
 
 Moving forwards:
