@@ -27,10 +27,10 @@ Missed progress last week as was sick for its entirety.
 
 Current work: Get data via API. Not a lot of documentation available, so experimention is needed. However, I should be able to do some basic experimentation on the current set of data. 
 TODO:
-[] Gather data using API as current extraction through GUI limits to only one location at a time due to download size limits.
-[] Define a usibility metric. Cold is good, but sunlight is likely more important. The weighting of these needs to be considered. 
-[] Filtering data down and cleaning. Option 1: GHI should be looked at as a summation over time, while temperature should be viewed as a condition that needs to be met a minimum of x hours a day. Option 2: combine GHI and temperature for each hour to get a score. The best way to combine this is a research task
-[] Research the way energy generation depends on temperature and GHI to determine exactly how much each should be considered.
+[x] Gather data using API as current extraction through GUI limits to only one location at a time due to download size limits.
+[x] Define a usibility metric. Cold is good, but sunlight is likely more important. The weighting of these needs to be considered. 
+[x] Filtering data down and cleaning. Option 1: GHI should be looked at as a summation over time, while temperature should be viewed as a condition that needs to be met a minimum of x hours a day. Option 2: combine GHI and temperature for each hour to get a score. The best way to combine this is a research task
+[x] Research the way energy generation depends on temperature and GHI to determine exactly how much each should be considered.
 [] Consider regression for predictions overtime (predict usability score)
 [] Consider classification for location choice (more like manual, but also related). Will require multiple location analysis.
 
@@ -55,4 +55,24 @@ Goodness_metric = GHI*abs(100-Temp). GHI: Watts/m^2 , Temp = degrees celsius. No
 Based on graphing GHI vs Temperature over just a day with 30 minutue interveral, while most of the time temperature and GHI increase and decrease together, occations GHI has extremely irregular patterns. This is likely to cloud cover varition and irregular weather patterns. Regardless of cause, this leads the motivation to look at GHI vs Temp at such a fine scale before looking at monthly averages.
 
 I am using gdal to explore the raster data which requires installation work. https://opensourceoptions.com/blog/how-to-install-gdal-for-python-with-pip-on-windows/
+data: https://www.nrel.gov/gis/solar-resource-maps.html
+
+
+## 11/15/2022:
+Moving to modeling:
+
+Gdal success, can deal with raster data now but data may be difficult to deal with. GDAL version used: GDAL‑3.4.3‑cp39‑cp39‑win_amd64.whl from https://www.lfd.uci.edu/~gohlke/pythonlibs/. 
+Tasks Completed:
+[x] Read and displayed data as np array. 
+[x] Filtered points so only best GHI spots are shown. Best spots for april are in mexico for example.
+[x] Accessed data via api openning access to all datapoints
+Issues: 
+- Convert x,y corrd to Lat. and Long for raster case
+- Need to finalize which data source type is the best (Raster vs. Location data over year)
+
+
+NSRDB Notebook for reference found:
+https://github.com/NREL/hsds-examples/blob/master/notebooks/03_NSRDB_introduction.ipynb
+https://developer.nrel.gov/docs/solar/nsrdb/python-examples/
+
 
