@@ -58,6 +58,9 @@ I am using gdal to explore the raster data which requires installation work. htt
 data: https://www.nrel.gov/gis/solar-resource-maps.html
 
 
+## 11/08/2022:
+No commits last week due to academic holiday
+
 ## 11/15/2022:
 Moving to modeling:
 
