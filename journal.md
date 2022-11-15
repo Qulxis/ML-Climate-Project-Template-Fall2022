@@ -19,6 +19,9 @@ Observations:
 
 Conclusion: nsrdb is much more optimal than the original datasets. It's model for GHI is based on predicitions using the initially listed datasets (MERRA 2, MODIS, NASA database sets) and localizes the measurements of temperature and GHI, the main factors of our prediction. From here, I will move forward with data extraction via API, and then move towards creating a predictive model using location information (various attributes are open on nsrdb website, such as wind, dew point, etc). The key will actually be looking for correlation between other attributes to predict temperature and GHI outside of the autoregressive time model information.
 
+##  10/11/2022
+Sick, emailed Professor about extentions and delay in progress
+
 ## 10/18/2022
 Missed progress last week as was sick for its entirety.
 
@@ -35,4 +38,21 @@ API python example: https://developer.nrel.gov/docs/solar/nsrdb/guide/
 
 Conclusions: datapoint example loaded successfully as a usable pandas df. I will next look into baseline predictions using basic regression models for both temperature and GHI using time. I will also look into defining a metric to mark good locations vs bad locations.
 
+## 10/25/2022 + 11/1/2022
+API is uncooperative and dataset is absolutely massive. It is extremely granular, by the hour. This could be a case study where we look at if high GHI occurances actually overlap in the day with a lower temperature. However, to actually make this useful, we would need to expand this to multiple areas to search for. Too much data for my abilities (and seemingly the API). As such, will instead user raster data of the global GHI and temperature to observe global points of interest in which a grandular search might be useful. I have introduced both into this repo and has begun analysis of the local dataset in a notebook in src. 
+
+To determine the effect temperature has on solar panels imperically, I start with this article:
+https://www.mahindrateqo.com/blog/impact-of-temperature-on-solar-panels-efficiency/#:~:text=So%2C%20for%20every%20degree%20rise,more%20efficient%20in%20cooler%20temperature.
+
+Which states, "for every degree rise, the maximum power of the solar panel will fall by 0.258% and for every degree fall it will increase by the same percentage. This means, no matter where you are, your panels will be affected by seasonal variation and also that solar panels are more efficient in cooler temperature."
+
+This is in celsius, and thus taking the max and min land temperatures, I get a range of 146 degrees (-88c to 58c), equivalent to 37.66% of efficiency different just from temperature alone in an earth-like conditions. This will be justification for my research as well.
+
+I will use a simple metric to calculate my "goodness of placement" score and that is a sum of products of GHI and temperature efficiency over a day/month/year. I first will look at each day by looking at GHI and temperature every 30 minutes (more local) which is the best estimation of power generation effect based on just temperature and GHI that I do. I will do this for a multiple months and then compare results with if I calculate my score on just the monthly GHI and temperature averages. This is to see at what scale do we see sufficient accuracy in power prediction. I can scale this process out to years as well. By doing this, I will know what time step I need to work with, though I realistically can only go by month due to the scale of the data. 
+
+Goodness_metric = GHI*abs(100-Temp). GHI: Watts/m^2 , Temp = degrees celsius. Note this scale is relative to itself and cannot be combined in its present state so far. It is a relative metric to help compare locations.
+
+Based on graphing GHI vs Temperature over just a day with 30 minutue interveral, while most of the time temperature and GHI increase and decrease together, occations GHI has extremely irregular patterns. This is likely to cloud cover varition and irregular weather patterns. Regardless of cause, this leads the motivation to look at GHI vs Temp at such a fine scale before looking at monthly averages.
+
+I am using gdal to explore the raster data which requires installation work. https://opensourceoptions.com/blog/how-to-install-gdal-for-python-with-pip-on-windows/
 
