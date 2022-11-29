@@ -91,7 +91,7 @@ Moving forwards:
     - Move process to personal API for use future use in step 3.
     - Split into train, val, test split. Augment data if not enough 
     - Train model and observe results (acc, precision etc)
-[ ] 2. Use raster data to identify locations with GHI to help limit our search space.
+[x] 2. Use raster data to identify locations with GHI to help limit our search space.
     - Convert x,y coord to long and lat coord
     - Filter locations by hard threshold of GHI values
     - Filter locations by temp if possible, missing dataset for this.
@@ -99,4 +99,43 @@ Moving forwards:
 [ ] 3. Select n number of locations within the area's filtered by raster data search and perform predictive modelling for each location
 [ ] 4. Observe results and select locations with best likelihood of having good score over next 3-5 years
 
+
+## 11/28/2022
+Cleaning up repo and organizing notebooks into follow-along format. Below are notes on Power Output calculation methods that I want to keep. Look through Notebooks to see progress :)
+
+More concrete scoring:
+PV = Photovoltaic system
+
+Many ways to calculate the PV output:
+1. https://photovoltaic-software.com/principle-ressources/how-calculate-solar-energy-power-pv-systems
+Power is given by:
+E = A * r * H * PR
+
+E = Energy (kWh)
+A = Total solar panel Area (m2)
+r = solar panel yield or efficiency(%) 
+H = Annual average solar radiation on tilted panels (shadings not included)
+PR = Performance ratio, coefficient for losses (range between 0.5 and 0.9, default value = 0.75)
+
+Assume A is fixed, H is GHI. 
+
+For PR:
+- Inverter losses (4% to 10 %)
+- Temperature losses (5% to 20%)
+- DC cables losses (1 to 3 %)
+- AC cables losses (1 to 3 %)
+- Shadings 0 % to 80% !!! (specific to each site)
+- Losses at weak radiation 3% to 7%
+- Losses due to dust, snow... (2%)
+- Other Losses (?)
+
+2. Homer
+https://www.homerenergy.com/products/pro/docs/3.11/how_homer_calculates_the_pv_array_power_output.html
+PV caculation explicit:
+$P = Y_{pv}f_{pv}(\frac{G_T}{G_{SD}})[1+\alpha*(T_c - T_{c,STC})]$
+https://www.homerenergy.com/products/pro/docs/latest/how_homer_calculates_the_pv_cell_temperature.html
+Solar panel efficiency depends on temperature of the cell, not ambience. According to Homer's second link, this cell temperature is calcuatable. It also is very difficult and requires data I do not have.
+
+[x] Updated Notebook and strcture to be suitable for presentation and follow along
+[x] Added explicit explaination of preprocessing and calcualtion justifications 
 
