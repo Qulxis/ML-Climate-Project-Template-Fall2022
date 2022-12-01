@@ -139,3 +139,17 @@ Solar panel efficiency depends on temperature of the cell, not ambience. Accordi
 [x] Updated Notebook and strcture to be suitable for presentation and follow along
 [x] Added explicit explaination of preprocessing and calcualtion justifications 
 
+## 11/30/2022
+Finishing $T_c calculations$
+Nrel is in W/m^2 rather than kW/m^2. While this factor should scale evenly in the calculation regardless, I am unsure if it will affect my results. Should be fine.
+
+Conflicting results on range of Wattage for PV cells:https://www.solar.com/learn/how-much-energy-does-a-solar-panel-produce/
+vshttps://www.solaris-shop.com/hanwha-q-cells-q-pro-bfr-g4-260-260w-poly-solar-panel/
+https://www.sciencedirect.com/science/article/pii/S0360544219305729 
+Example calculation:
+https://sinovoltaics.com/solar-basics/measuring-the-temperature-coefficients-of-a-pv-module/
+https://climatebiz.com/peak-sun-hours-united-states/
+https://www.solar.com/learn/how-much-energy-does-a-solar-panel-produce/
+
+Finished PV output calculations and cross referenced with online resources listed above!
+
