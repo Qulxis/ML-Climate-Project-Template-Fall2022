@@ -153,3 +153,10 @@ https://www.solar.com/learn/how-much-energy-does-a-solar-panel-produce/
 
 Finished PV output calculations and cross referenced with online resources listed above!
 
+## 12/1/2022
+Apply score and then train linear regression model from prediction!
+Steps:
+1. Apply scores for one instance to test and aggragate to be in final data state.  [x]
+2. Move process to API section. [ ]
+3. Call API for all years from 1998-2021. [ ]
+4. Create data-output paris. Features are data from last 5-7 years and output is the PV (kWh/year and/or kWh/month) [ ]
