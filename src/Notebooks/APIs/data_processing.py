@@ -29,7 +29,7 @@ Note that cell_rating is in kW, not W!
 This function adds the PV rating to the df assuming time interval is hourly. 
 
 """
-def addPV(df,cell_rating):
+def addPV(df,cell_rating=400):
     pv = []
     ghi_hist = df["GHI"].tolist()
     temp_hist = df["Temperature"].tolist()
@@ -51,7 +51,7 @@ def getData(api_key, your_name, your_affiliation, your_email, lat=33.2164, lon =
     # Define the lat, long of the location and the year
     lat, lon, year = lat, lon, year #Long is always negative Los Angeles USA: 33.2164, -118.2437
     # You must request an NSRDB api key from the link above
-    api_key = api_key # 'KGQPxhHwezmhBj96AirFO6eKuzfP5DvQI7gFDWOk'
+    api_key = api_key # 
     # Set the attributes to extract (e.g., dhi, ghi, etc.), separated by commas.
     attributes = 'ghi,air_temperature'
     # Choose year of data
@@ -69,9 +69,9 @@ def getData(api_key, your_name, your_affiliation, your_email, lat=33.2164, lon =
     # Your reason for using the NSRDB.
     reason_for_use = 'beta+testing'
     # Your affiliation
-    your_affiliation = your_affiliation #'columbia+university'
+    your_affiliation = your_affiliation #
     # Your email address
-    your_email = your_email #'ahx2001@columbia.edu'
+    your_email = your_email #
     # Please join our mailing list so we can keep you up-to-date on new developments.
     mailing_list = 'true'
 
@@ -99,6 +99,8 @@ This function takes in a df with hour level granularity and returns a dataframe 
 It includes PV in kWh/day, average ghi and temperature. 
 Columns in outputs are: Year, Month, Day, Temp mean, GHI mean, and PV kWh/day
 
+Typically run this on ouput of addPV!
+
 
 """
 def hoursToDays(df):   
@@ -111,7 +113,7 @@ def hoursToDays(df):
     temp_days = []
     ghi_days = []
     day_days = []
-    for day in range(len(pv)//24):
+    for day in range(len(df["pv"])//24):
         month_days.append(df["Month"][day*24])
         pv_days.append(np.sum(df["pv"][day*24:day*24+24]))
         ghi_days.append(np.mean(ghi_hist[day*24:day*24+24]))
@@ -125,5 +127,5 @@ def hoursToDays(df):
         "GHI mean": ghi_days,
         "PV kWh/day": pv_days
     }
-    df_days = pd.DataFrame.from_dict(dic_days,index=False)
+    df_days = pd.DataFrame.from_dict(dic_days)
     return df_days
