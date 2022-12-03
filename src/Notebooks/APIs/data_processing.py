@@ -129,3 +129,74 @@ def hoursToDays(df):
     }
     df_days = pd.DataFrame.from_dict(dic_days)
     return df_days
+
+
+"""
+Runs on output of hoursToDays.
+"""
+def daysToMonths(df):
+    year_month = [df["Year"][0]]*12
+    month_month = []
+    pv_month = []
+    temp_month = []
+    ghi_month = []
+    for i in range(12):
+        i += 1 #to match month counter
+        df_month = df.loc[df['Month'] == i]
+        month_month.append(i)
+        pv_month.append(np.sum(df_month["PV kWh/day"]))
+        temp_month.append(np.mean(df_month["Temp mean"]))
+        ghi_month.append(np.mean(df_month["GHI mean"]))
+    dic_month = {
+        "Year":year_month,
+        "Month": month_month,
+        "Temp mean": temp_month,
+        "GHI mean": ghi_month,
+        "PV kWh/month": pv_month
+    }
+    df_month = pd.DataFrame.from_dict(dic_month)
+    return df_month
+
+"""
+Runs on output of addPV.
+"""
+def hoursToMonths(df):
+    year_month = [df["Year"][0]]*12
+    month_month = []
+    pv_month = []
+    temp_month = []
+    ghi_month = []
+    for i in range(12):
+        i += 1 #to match month counter
+        df_month = df.loc[df['Month'] == i]
+        month_month.append(i)
+        pv_month.append(np.sum(df_month["pv"]))
+        temp_month.append(np.mean(df_month["Temperature"]))
+        ghi_month.append(np.mean(df_month["GHI"]))
+    dic_month = {
+        "Year":year_month,
+        "Month": month_month,
+        "Temp mean": temp_month,
+        "GHI mean": ghi_month,
+        "PV kWh/month": pv_month
+    }
+    df_month = pd.DataFrame.from_dict(dic_month)
+    return df_month
+""""
+dataByLocation
+Inputs: api_key (string), your_name (string), your_affiliation (string), your_email (string), lat (float), lon (float), cell_rating (float)
+end_year (int)
+Ouput: 
+This lets the function run in one line
+"""
+def dataByLocation(api_key, your_name, your_affiliation, your_email, lat, lon, cell_rating, end_year):
+    dates = list(range(1998, end_year)) #years 1998-2020. Online states 1998-2021 but error when I try to make a request
+    df_all = pd.DataFrame(columns=["Year", "Month", "Temp mean", "GHI mean", "PV kWh/month"]) #final df
+    for date in dates:
+        df = getData(api_key, your_name, your_affiliation, your_email, lat=lat, lon = lon, year=date) #get raw data from nrel
+        df_pv = addPV(df,cell_rating=cell_rating) #Add PV calculated column
+        df_pv_month = hoursToMonths(df_pv)
+        df_all = pd.concat([df_all, df_pv_month])
+        df_all["lat"] = [lat]*len(df_all)
+        df_all["lon"] = [lon]*len(df_all)
+    return df_all
