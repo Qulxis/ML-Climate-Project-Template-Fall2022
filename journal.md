@@ -165,3 +165,20 @@ Steps:
 Modeling and data preprocessing completed.
 Ready for presentations! Last step is to let data collection run for all points and then impliment train-test split to validate results.
 
+## 12/5/2022
+Getting previous work references in order for paper:
+https://nrel.github.io/reV/_autosummary/reV.html
+https://sam.nrel.gov/
+
+Previous work does not predict power output! Just solar intensity which is just one factor in power generation
+http://cs229.stanford.edu/proj2019spr/report/91.pdf
+https://ieeexplore.ieee.org/document/6102379
+
+Previous work using exisitng PV cell but thus is limited non-satelite data, only 4 locations:
+
+https://www.hindawi.com/journals/amse/2022/6458377/
+
+Previous work using already built solar arrays. While useful it does not tell us much about locations elsewhere and thus does not help in predicitng new locations to build solar arrays in.
+
+https://www.hindawi.com/journals/ijp/2022/1541938/
+"The data on energy production was obtained from five different places and sampled every 15 minutes. The data was likewise collected from five different locations."
