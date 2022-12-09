@@ -31,8 +31,8 @@ TODO:
 [x] Define a usibility metric. Cold is good, but sunlight is likely more important. The weighting of these needs to be considered. 
 [x] Filtering data down and cleaning. Option 1: GHI should be looked at as a summation over time, while temperature should be viewed as a condition that needs to be met a minimum of x hours a day. Option 2: combine GHI and temperature for each hour to get a score. The best way to combine this is a research task
 [x] Research the way energy generation depends on temperature and GHI to determine exactly how much each should be considered.
-[ ] Consider regression for predictions overtime (predict usability score)
-[ ] Consider classification for location choice (more like manual, but also related). Will require multiple location analysis.
+[x] Consider regression for predictions overtime (predict usability score)
+[x] Consider classification for location choice (more like manual, but also related). Will require multiple location analysis.
 
 API python example: https://developer.nrel.gov/docs/solar/nsrdb/guide/
 
@@ -86,7 +86,7 @@ Moving forwards:
 - Data is already sorted into time series form, just need to squash to not be every 30 minutes lol
 
 ## Final Approach:
-[ ] 1. Generate predictive model for one random location in USA to prove efficacy
+[x] 1. Generate predictive model for one random location in USA to prove efficacy
     - Squash data to have time step of daily rather hourly and extract "Goodness score"
     - Move process to personal API for use future use in step 3.
     - Split into train, val, test split. Augment data if not enough 
@@ -96,8 +96,8 @@ Moving forwards:
     - Filter locations by hard threshold of GHI values
     - Filter locations by temp if possible, missing dataset for this.
     - Record filtered location for step 3
-[ ] 3. Select n number of locations within the area's filtered by raster data search and perform predictive modelling for each location
-[ ] 4. Observe results and select locations with best likelihood of having good score over next 3-5 years
+[x] 3. Select n number of locations within the area's filtered by raster data search and perform predictive modelling for each location
+
 
 
 ## 11/28/2022
@@ -182,3 +182,10 @@ Previous work using already built solar arrays. While useful it does not tell us
 
 https://www.hindawi.com/journals/ijp/2022/1541938/
 "The data on energy production was obtained from five different places and sampled every 15 minutes. The data was likewise collected from five different locations."
+
+## 12/7/2022
+Realized issues with initial approach but still think that results are useful for filling in missing data points!
+Updating notebooks.
+
+## 12/8/2022 
+Finished paper and project. Would like to continue experimentation but I must attend to serveral other projects for this time frame.
