@@ -19,8 +19,11 @@ etc/
 There should be nothing else in the top level directory of your repository.
 
 Commit often, at least every week. You are graded on the quality of the project and the path that you took to get there. -->
+# Solar Panel Location Selection Using Power Generation Potential Prediction
 
-This project is for my semester in ML and Climate at Columbia University during the Fall of 2022. I develop an approach to help identify promising locations to build solar panel arrays by leveraging  only GHI levels and ambient temperature readings from the National Renewable Energy Laboratory (NREL)'s satelitte data to approximate the historical potential Photovoltaic output that matches SOTA simulations. I explore machine learning models from Linear Regression to Random Forest approachs and document the results in notebooks viewable in this repository.
+This project is for my semester in ML and Climate at Columbia University during the Fall of 2022. 
+
+I develop an approach to help identify promising locations to build solar panel arrays by leveraging  only GHI levels and ambient temperature readings from the National Renewable Energy Laboratory (NREL)'s satelitte data to approximate the historical potential Photovoltaic output that matches SOTA simulations. I explore machine learning models from Linear Regression to Random Forest approachs and document the results in notebooks viewable in this repository.
 
 To explore this project, view the following notebooks under the src folder in sequence:
 - 1 Map Visualization and Data Selection
