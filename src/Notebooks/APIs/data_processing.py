@@ -1,6 +1,16 @@
 import sys, os
 import pandas as pd
 import numpy as np
+#Extra for pipreqs to detect to help generate better requirements.txt 
+import ssl
+import certifi
+import certifi
+import urllib
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn import preprocessing
 
 """
 calcPV
